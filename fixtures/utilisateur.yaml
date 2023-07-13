@@ -1,0 +1,15 @@
+App\Entity\Utilisateur:
+  utilisateur_1:
+    nom: Gaspar
+    prenom: Dublinon
+    adresse: '@adresse_utilisateur_1'
+    commandes: ['@commande_utilisateur_1_1', '@commande_utilisateur_1_2', '@commande_utilisateur_1_3', '@commande_utilisateur_1_4']
+  utilisateur_2:
+    nom: Florismart
+    prenom: Mailloux
+    adresse: '@adresse_utilisateur_2'
+    commandes: ['@commande_utilisateur_1_1', '@commande_utilisateur_1_2', '@commande_utilisateur_1_3']
+  utilisateur_{4..100}:
+    nom:  <name()>
+    prenom:  <name()>
+    adresse: '@adresse_utilisateur_<current()>'

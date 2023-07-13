@@ -1,0 +1,29 @@
+App\Entity\Commande:
+  commande_utilisateur_1_1:
+    nom: shampoing
+    prix: 3.0
+    date: <(new DateTime("2023-06-12 20:40:00"))>
+  commande_utilisateur_1_2:
+    nom: savon
+    prix: 2.0
+    date: <(new DateTime("2023-07-08 17:40:00"))>
+  commande_utilisateur_1_3:
+    nom: clavier
+    prix: 92.0
+    date: <(new DateTime("2023-07-12 07:55:12"))>
+  commande_utilisateur_1_4:
+    nom: livres
+    prix: 12.0
+    date: <(new DateTime("2023-07-12 08:05:59"))>
+  commande_utilisateur_2_1:
+    nom: bonbons
+    prix: 3.0
+    date: <(new DateTime("2023-06-12 20:40:00"))>
+  commande_utilisateur_2_2:
+    nom: ballon
+    prix: 2.0
+    date: <(new DateTime("2023-07-08 17:40:00"))>
+  commande_utilisateur_2_3:
+    nom: table
+    prix: 92.0
+    date: <(new DateTime("2023-07-12 07:55:12"))>
