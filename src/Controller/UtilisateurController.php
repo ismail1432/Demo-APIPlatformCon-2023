@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\ExternalApi\Repository\UserRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

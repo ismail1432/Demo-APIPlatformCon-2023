@@ -19,6 +19,9 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Address $address = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,5 +49,10 @@ class User
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

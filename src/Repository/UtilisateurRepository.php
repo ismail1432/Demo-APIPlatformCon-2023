@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Utilisateur;
+use App\Http\Repository\HttpUserRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,9 +17,18 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UtilisateurRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private HttpUserRepository $httpUserRepository;
+
+    public function __construct(ManagerRegistry $registry, HttpUserRepository $httpUserRepository)
     {
         parent::__construct($registry, Utilisateur::class);
+
+        $this->httpUserRepository = $httpUserRepository;
+    }
+
+    public function find($id, $lockMode = null, $lockVersion = null)
+    {
+        return $this->httpUserRepository->find($id);
     }
 
     //    /**

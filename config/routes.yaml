@@ -1,5 +1,10 @@
-controllers:
+app:
     resource:
         path: ../src/Controller/
         namespace: App\Controller
+    type: attribute
+external_api:
+    resource:
+        path: ../src/ExternalApi/Controller/
+        namespace: App\ExternalApi\Controller
     type: attribute

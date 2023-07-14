@@ -20,5 +20,11 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\ExternalApi\Controller\:
+        resource: '../src/ExternalApi/Controller/*.php'
+        public: true
+        tags:
+            - controller.service_arguments
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

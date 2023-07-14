@@ -39,9 +39,11 @@ class Adresse
         return $this;
     }
 
-    public function setVille(?string $ville): void
+    public function setVille(?string $ville): static
     {
         $this->ville = $ville;
+
+        return $this;
     }
 
     public function getCodePostal(): ?string
