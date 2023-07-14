@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Entity;
+namespace App\ExternalApi\Entity;
 
 class Adress
 {

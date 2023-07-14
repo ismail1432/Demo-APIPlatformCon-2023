@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Api\Entity;
+namespace App\ExternalApi\Entity;
 
-use App\Api\Repository\UserRepository;
+use App\ExternalApi\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]

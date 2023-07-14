@@ -19,22 +19,9 @@
             <li>Adresse : {{ utilisateur.adresse.rue}} </li>
             <li>Ville : {{ utilisateur.adresse.ville }} </li>
             <li>Code Postal : {{ utilisateur.adresse.codePostal}} </li>
-
-            {% if  utilisateur.commandes|length > 0 %}
-            Commandes
-            {% endif %}
-            {% for commande in utilisateur.commandes %}
-                <li>{{ commande.nom }} {{ commande.prix }} €</li>
-            {% endfor %}
+            <a href="{{ path('detail_utilisateur', {id: utilisateur.id} ) }}">Detail</a>
         <hr>
-
         {% endfor %}
         <ul>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/smaine/project/demo_api_platform_con/src/Controller/UtilisateurController.php'|file_link(0) }}">src/Controller/UtilisateurController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/smaine/project/demo_api_platform_con/templates/utilisateur/index.html.twig'|file_link(0) }}">templates/utilisateur/index.html.twig</a></code></li>
-    </ul>
 </div>
 {% endblock %}

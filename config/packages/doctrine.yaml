@@ -20,7 +20,7 @@ doctrine:
                 alias: App
             Api:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Api/Entity'
+                dir: '%kernel.project_dir%/src/ExternalApi/Entity'
                 prefix: 'Api\Entity'
                 alias: Api
 
