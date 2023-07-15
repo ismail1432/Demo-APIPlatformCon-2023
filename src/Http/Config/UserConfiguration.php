@@ -6,15 +6,15 @@ use App\Entity\Commande;
 
 final class UserConfiguration implements DatabaseProperties
 {
-    public function getFields()
+    public function getDatabaseProperties()
     {
         return ['email'];
     }
 
-    public function getOneToManyConfiguration()
+    public function getDatabaseRelations()
     {
         return [
-          OneToManyConfiguration::create(Commande::class, 'utilisateur', 'commandes'),
+          RelationConfiguration::create(Commande::class, 'utilisateur', 'commandes'),
         ];
     }
 }

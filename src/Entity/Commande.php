@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use App\Http\Config\ContainsApiResource;
+use App\Http\Config\RelationConfiguration;
 use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
-class Commande
+class Commande implements ContainsApiResource
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -77,5 +79,16 @@ class Commande
         $this->utilisateur = $utilisateur;
 
         return $this;
+    }
+
+    public function getRelationsConfiguration(): array
+    {
+        return [
+            RelationConfiguration::create(
+                Utilisateur::class,
+                'id',
+                'utilisateur'
+            ),
+        ];
     }
 }

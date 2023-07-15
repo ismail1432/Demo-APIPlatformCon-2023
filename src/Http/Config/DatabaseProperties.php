@@ -7,10 +7,10 @@ interface DatabaseProperties
     /**
      * @return string[]
      */
-    public function getFields();
+    public function getDatabaseProperties();
 
     /**
-     * @return OneToManyConfiguration[]
+     * @return RelationConfiguration[]
      */
-    public function getOneToManyConfiguration();
+    public function getDatabaseRelations();
 }

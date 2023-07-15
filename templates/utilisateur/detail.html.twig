@@ -17,9 +17,9 @@
             {% if  utilisateur.commandes|length > 0 %}
             <h2>Commandes</h2>
             {% endif %}
-    <ul>
+        <ul>
             {% for commande in utilisateur.commandes %}
-                <li>{{ commande.nom }} {{ commande.prix }} €</li>
+                <li>{{ commande.nom }} {{ commande.prix }} € <a href="{{ path('detail_commande', {id: commande.id}) }}">Voir commande</a></li>
             {% endfor %}
         <ul>
 

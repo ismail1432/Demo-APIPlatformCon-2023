@@ -2,7 +2,7 @@
 
 namespace App\Http\Config;
 
-final class OneToManyConfiguration
+final class RelationConfiguration
 {
     private function __construct(
         private readonly string $fqcn,

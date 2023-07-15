@@ -9,12 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Detail Commande {{ commande.id }}!</h1>
+    <h1>{{ commande.utilisateur.nom }} {{ commande.utilisateur.prenom}}</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/smaine/project/demo_api_platform_con/src/Controller/CommandeController.php'|file_link(0) }}">src/Controller/CommandeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/smaine/project/demo_api_platform_con/templates/commande/index.html.twig'|file_link(0) }}">templates/commande/index.html.twig</a></code></li>
-    </ul>
+    <h3>Adresse : {{ commande.utilisateur.adresse.rue}}, {{ commande.utilisateur.adresse.ville }} -  {{ commande.utilisateur.adresse.codePostal}}</h3>
+
+    <h4>Email : {{ commande.utilisateur.email }}</h4>
+    <h5><a href="{{ path('liste_utilisateur') }}">Liste utilisateur</a> </h5>
 </div>
 {% endblock %}
