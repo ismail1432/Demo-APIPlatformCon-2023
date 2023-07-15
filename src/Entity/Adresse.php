@@ -62,4 +62,15 @@ class Adresse
     {
         return $this->ville;
     }
+
+    public static function create(string $rue, string $ville, string $codePostal): self
+    {
+        $self = new self();
+
+        $self->rue = $rue;
+        $self->ville = $ville;
+        $self->codePostal = $codePostal;
+
+        return $self;
+    }
 }

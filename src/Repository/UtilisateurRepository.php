@@ -28,7 +28,13 @@ class UtilisateurRepository extends ServiceEntityRepository
 
     public function find($id, $lockMode = null, $lockVersion = null)
     {
+        // return $this->getEntityManager()->find(Utilisateur::class, $id);
         return $this->httpUserRepository->find($id);
+    }
+
+    public function getUtilisateursActif(): array
+    {
+        // blabla
     }
 
     //    /**

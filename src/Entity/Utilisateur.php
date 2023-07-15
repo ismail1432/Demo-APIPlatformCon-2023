@@ -21,6 +21,9 @@ class Utilisateur
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Adresse $adresse = null;
 
@@ -101,5 +104,15 @@ class Utilisateur
         }
 
         return $this;
+    }
+
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
     }
 }

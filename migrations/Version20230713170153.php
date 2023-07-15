@@ -41,6 +41,7 @@ final class Version20230713170153 extends AbstractMigration
             adresse_id INTEGER DEFAULT NULL,
             prenom VARCHAR(255) NOT NULL,
             nom VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
             CONSTRAINT FK_1D1C63B34DE7DC5C FOREIGN KEY (adresse_id) REFERENCES adresse (id) NOT DEFERRABLE INITIALLY IMMEDIATE)
         ');
 

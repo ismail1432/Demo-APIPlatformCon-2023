@@ -13,6 +13,7 @@
 
             <h3>Adresse : {{ utilisateur.adresse.rue}}, {{ utilisateur.adresse.ville }} -  {{ utilisateur.adresse.codePostal}}</h3>
 
+            <h4>Email : {{ utilisateur.email }}</h4>
             {% if  utilisateur.commandes|length > 0 %}
             <h2>Commandes</h2>
             {% endif %}
