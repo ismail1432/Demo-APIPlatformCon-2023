@@ -4,16 +4,11 @@ namespace App\Http\Config;
 
 final class RelationConfiguration
 {
-    private function __construct(
+    public function __construct(
         private readonly string $fqcn,
         private readonly string $identifier,
         private readonly string $propertyPath,
     ) {
-    }
-
-    public static function create(string $fqcn, string $identifier, string $propertyPath)
-    {
-        return new self($fqcn, $identifier, $propertyPath);
     }
 
     public function getFqcn(): string

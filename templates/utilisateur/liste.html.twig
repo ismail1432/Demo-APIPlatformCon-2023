@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UtilisateurController!{% endblock %}
-
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -9,7 +7,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Utilisateurs !</h1>
+    <h1>Utilisateurs ! ☃️</h1>
 
     <ul>
         <hr>
@@ -19,7 +17,7 @@
             <li>Adresse : {{ utilisateur.adresse.rue}} </li>
             <li>Ville : {{ utilisateur.adresse.ville }} </li>
             <li>Code Postal : {{ utilisateur.adresse.codePostal}} </li>
-            <a href="{{ path('detail_utilisateur', {id: utilisateur.id} ) }}">Detail</a>
+            <a href="{{ path('detail_utilisateur', {id: utilisateur.id} ) }}">Detail 🔎</a>
         <hr>
         {% endfor %}
         <ul>

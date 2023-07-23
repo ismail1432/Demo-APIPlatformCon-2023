@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommandeController!{% endblock %}
-
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -9,12 +7,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Detail Commande {{ commande.id }}!</h1>
-    <h1>{{ commande.utilisateur.nom }} {{ commande.utilisateur.prenom}}</h1>
-
-    <h3>Adresse : {{ commande.utilisateur.adresse.rue}}, {{ commande.utilisateur.adresse.ville }} -  {{ commande.utilisateur.adresse.codePostal}}</h3>
-
-    <h4>Email : {{ commande.utilisateur.email }}</h4>
+    <h1>👀Detail Commande {{ commande.id }} !</h1>
+    {% include 'block_utilisateur_detail.html.twig' with {'utilisateur': commande.utilisateur} %}
     <h5><a href="{{ path('liste_utilisateur') }}">Liste utilisateur</a> </h5>
 </div>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Http\Config\ContainsApiResource;
 use App\Http\Config\RelationConfiguration;
+use App\Http\Model\User;
 use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -84,8 +85,8 @@ class Commande implements ContainsApiResource
     public function getRelationsConfiguration(): array
     {
         return [
-            RelationConfiguration::create(
-                Utilisateur::class,
+            new RelationConfiguration(
+                User::class,
                 'id',
                 'utilisateur'
             ),

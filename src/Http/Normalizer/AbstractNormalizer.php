@@ -25,19 +25,23 @@ abstract class AbstractNormalizer implements DenormalizerInterface, Denormalizer
             ->getPropertyAccessor();
     }
 
-    abstract public function denormalize(mixed $data, string $type, string $format = null, array $context = []);
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
+    {
+        return array_key_exists('@id', $data)
+            ? $this->doDenormalize($data, $type, $format, $context)
+            : $this->denormalizer->denormalize($data, $type.'[]', 'json');
+    }
 
     abstract public function supportsDenormalization(mixed $data, string $type, string $format = null);
+
+    abstract public function doDenormalize(mixed $data, string $type, string $format = null, array $context = []);
 
     protected function hydrateRoot($object, array $data = [])
     {
         foreach ($data as $property => $value) {
-            $method = 'set'.\ucfirst($property);
-            if (\method_exists($object, $method)) {
-                $object->{$method}($value);
-            }
+            $this->propertyAccessor->setValue($object, $property, $value)
+            ;
         }
-
         $object->setId($data['@id']);
 
         return $object;
@@ -57,33 +61,36 @@ abstract class AbstractNormalizer implements DenormalizerInterface, Denormalizer
             },
             $alias
         );
-        $qb = $this->entityManager->createQueryBuilder()
+
+        $result = $this->entityManager->createQueryBuilder()
             ->from($entityClass, $alias)
             ->select($databaseFields)
             ->where($alias.'.id = :id')
-            ->setParameter('id', $object->getId());
-
-        $result = $qb->getQuery()->getSingleResult(AbstractQuery::HYDRATE_ARRAY);
+            ->setParameter('id', $object->getId())
+        ->getQuery()
+        ->getSingleResult(AbstractQuery::HYDRATE_ARRAY);
 
         foreach ($result as $field => $value) {
+            /* @var PropertyAccessorInterface */
             $this->propertyAccessor->setValue($object, $field, $value);
         }
     }
 
     /**
-     * @param RelationConfiguration[] $oneToManyConfigurations
+     * @param RelationConfiguration[] $relationConfigurations
      */
-    protected function hydrateDatabaseRelations(array $oneToManyConfigurations, $object): void
+    protected function hydrateDatabaseRelations(array $relationConfigurations, $object): void
     {
-        foreach ($oneToManyConfigurations as $oneToManyConfiguration) {
+        $result = [];
+        foreach ($relationConfigurations as $relationConfiguration) {
             $result =
                 $this->entityManager
-                    ->getRepository($oneToManyConfiguration->getFqcn())
-                    ->findBy([$oneToManyConfiguration->getIdentifier() => $object->getId()])
+                    ->getRepository($relationConfiguration->getFqcn())
+                    ->findBy([$relationConfiguration->getIdentifier() => $object->getId()])
             ;
         }
         if ([] !== $result) {
-            $this->propertyAccessor->setValue($object, $oneToManyConfiguration->getPropertyPath(), $result);
+            $this->propertyAccessor->setValue($object, $relationConfiguration->getPropertyPath(), $result);
         }
     }
 }

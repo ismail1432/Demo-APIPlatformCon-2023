@@ -9,18 +9,7 @@ use App\Http\Model\User;
 
 class UserNormalizer extends AbstractNormalizer
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
-    {
-        $isItem = array_key_exists('@id', $data);
-
-        if ($isItem) {
-            return $this->doDenormalize($data);
-        }
-
-        return $this->denormalizer->denormalize($data, $type.'[]', 'json');
-    }
-
-    private function doDenormalize(mixed $data)
+    public function doDenormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
         /** @var User $user */
         $user = $this->hydrateRoot(new User(), $data);

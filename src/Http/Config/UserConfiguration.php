@@ -14,7 +14,7 @@ final class UserConfiguration implements DatabaseProperties
     public function getDatabaseRelations()
     {
         return [
-          RelationConfiguration::create(Commande::class, 'utilisateur', 'commandes'),
+          new RelationConfiguration(Commande::class, 'utilisateur', 'commandes'),
         ];
     }
 }

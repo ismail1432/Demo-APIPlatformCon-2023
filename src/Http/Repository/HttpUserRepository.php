@@ -2,7 +2,6 @@
 
 namespace App\Http\Repository;
 
-use App\Entity\Utilisateur;
 use App\Http\Model\User;
 
 class HttpUserRepository extends AbstractHttpRepository
@@ -12,13 +11,8 @@ class HttpUserRepository extends AbstractHttpRepository
         return 'users';
     }
 
-    public function getModelClassName(): string
+    public static function getModelClassName(): string
     {
         return User::class;
-    }
-
-    public static function getEntityClassName(): string
-    {
-        return Utilisateur::class;
     }
 }

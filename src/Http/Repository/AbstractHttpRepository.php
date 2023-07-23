@@ -3,7 +3,7 @@
 namespace App\Http\Repository;
 
 use Symfony\Component\Cache\Adapter\AdapterInterface;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -13,8 +13,10 @@ abstract class AbstractHttpRepository implements HttpRepositoryInterface
 
     public function __construct(protected readonly HttpClientInterface $apiClient, protected readonly SerializerInterface $serializer)
     {
-        $this->cache = new ArrayAdapter();
+        $this->cache = new FilesystemAdapter(defaultLifetime: 1);
     }
+
+    abstract public static function getModelClassName(): string;
 
     public function find(string $id)
     {
@@ -29,6 +31,7 @@ abstract class AbstractHttpRepository implements HttpRepositoryInterface
     private function doFind(string $uri)
     {
         $cacheKey = \str_replace('/', '', $uri);
+
         $item = $this->cache->getItem($cacheKey);
 
         if ($item->isHit()) {
@@ -39,7 +42,7 @@ abstract class AbstractHttpRepository implements HttpRepositoryInterface
 
         $object = $this->serializer->deserialize(
             $response->getContent(),
-            $this->getModelClassName(),
+            static::getModelClassName(),
             'json'
         );
 
