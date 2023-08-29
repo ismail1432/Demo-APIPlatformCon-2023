@@ -3,6 +3,7 @@
 namespace App\Doctrine\Listener;
 
 use App\Http\Config\ContainsApiResource;
+use App\Http\Repository\HttpRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\PostLoadEventArgs;
 use Doctrine\ORM\Events;
@@ -41,6 +42,8 @@ class EntityWithMigratedRelationPostLoadSubscriber implements EventSubscriberInt
                 if (!$this->httpRepositoryLocator->has($relationConfiguration->getFqcn())) {
                     throw new \LogicException(sprintf('No http repository found for "%s"', $relationConfiguration->getFqcn()));
                 }
+
+                /** @var HttpRepositoryInterface $httpRepository */
                 $httpRepository = $this->httpRepositoryLocator->get($relationConfiguration->getFqcn());
                 $property = $this->propertyAccessor->getValue($object, $relationConfiguration->getPropertyPath());
                 $idValue = $this->propertyAccessor->getValue($property, $relationConfiguration->getIdentifier());

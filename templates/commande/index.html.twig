@@ -4,11 +4,16 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+    .database {border-style: solid; border-color: #5B21B6}
+    .api {border-style: solid; border-color: aqua}
 </style>
 
 <div class="example-wrapper">
-    <h1>👀Detail Commande {{ commande.id }} !</h1>
+    <p class="api">From API</p>
+    <p class="database">From Database</p>
+    <h1 class="database">👀Detail Commande {{ commande.id }} !</h1>
     {% include 'block_utilisateur_detail.html.twig' with {'utilisateur': commande.utilisateur} %}
-    <h5><a href="{{ path('liste_utilisateur') }}">Liste utilisateur</a> </h5>
+    <h5><a href="{{ path('liste_utilisateur') }}">Liste utilisateurs</a> </h5>
 </div>
 {% endblock %}

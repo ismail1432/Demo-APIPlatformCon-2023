@@ -4,20 +4,25 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .api {border-style: solid; border-color: aqua}
+    .database {border-style: solid; border-color: #5B21B6}
 </style>
 
 <div class="example-wrapper">
     <h1>Utilisateurs ! ☃️</h1>
-
     <ul>
+        <p class="api">From API</p>
+        <p class="database">From Database</p>
         <hr>
         {% for utilisateur in utilisateurs %}
+        <div class="api">
             <li>Nom : {{ utilisateur.nom  }} </li>
             <li>Prenom : {{ utilisateur.prenom}} </li>
             <li>Adresse : {{ utilisateur.adresse.rue}} </li>
             <li>Ville : {{ utilisateur.adresse.ville }} </li>
             <li>Code Postal : {{ utilisateur.adresse.codePostal}} </li>
             <a href="{{ path('detail_utilisateur', {id: utilisateur.id} ) }}">Detail 🔎</a>
+        </div>
         <hr>
         {% endfor %}
         <ul>

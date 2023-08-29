@@ -27,7 +27,7 @@ class Utilisateur
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Adresse $adresse = null;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commande::class)]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commande::class, fetch: 'EXTRA_LAZY')]
     private Collection $commandes;
 
     public function __construct()

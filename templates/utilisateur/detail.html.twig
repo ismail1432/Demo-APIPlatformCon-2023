@@ -4,12 +4,15 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .database {border-style: solid; border-color: #5B21B6}
+    .api {border-style: solid; border-color: aqua}
 </style>
 
 <div class="example-wrapper">
     {% include 'block_utilisateur_detail.html.twig' %}
 
             {% if  utilisateur.commandes|length > 0 %}
+                <div class="database">
             <h2>Commandes</h2>
             {% endif %}
         <ul>
@@ -17,7 +20,8 @@
                 <li>{{ commande.nom }} {{ commande.prix }} € <a href="{{ path('detail_commande', {id: commande.id}) }}">Voir commande 🛒</a></li>
             {% endfor %}
         <ul>
+            {% if  utilisateur.commandes|length > 0 %}</div>{% endif %}
 
-            <h5><a href="{{ path('liste_utilisateur') }}">📖 Liste utilisateur</a> </h5>
+            <h5><a href="{{ path('liste_utilisateur') }}">📖 Liste utilisateurs</a> </h5>
 </div>
 {% endblock %}
