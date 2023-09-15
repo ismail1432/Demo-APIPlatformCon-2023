@@ -12,14 +12,14 @@ final class Version20230713170153 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql('CREATE TABLE adresse (
-            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            id INTEGER PRIMARY KEY NOT NULL,
             rue VARCHAR(255) NOT NULL,
             ville VARCHAR(255) NOT NULL,
             code_postal VARCHAR(255) NOT NULL)'
         );
 
         $this->addSql('CREATE TABLE address (
-            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            id INTEGER PRIMARY KEY NOT NULL,
             street_name VARCHAR(255) NOT NULL,
             city VARCHAR(255) NOT NULL,
             zip_code VARCHAR(255) NOT NULL)'

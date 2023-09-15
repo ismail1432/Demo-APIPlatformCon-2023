@@ -1,6 +1,6 @@
 <div class="example-wrapper">
     <div class="api">
-    <h1>🗣️ {{ utilisateur.nom }} {{ utilisateur.prenom}}</h1>
+    <h1>🗣️ {{ utilisateur.prenom |capitalize }} {{ utilisateur.nom |capitalize }}</h1>
 
     <h3>🏠 Adresse : {{ utilisateur.adresse.rue}}, {{ utilisateur.adresse.ville }} -  {{ utilisateur.adresse.codePostal}}</h3>
     </div>

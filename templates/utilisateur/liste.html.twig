@@ -16,8 +16,8 @@
         <hr>
         {% for utilisateur in utilisateurs %}
         <div class="api">
-            <li>Nom : {{ utilisateur.nom  }} </li>
-            <li>Prenom : {{ utilisateur.prenom}} </li>
+            <li>Prenom : <strong>{{ utilisateur.prenom |capitalize}}</strong></li>
+            <li>Nom : <strong>{{ utilisateur.nom |capitalize }}</strong> </li>
             <li>Adresse : {{ utilisateur.adresse.rue}} </li>
             <li>Ville : {{ utilisateur.adresse.ville }} </li>
             <li>Code Postal : {{ utilisateur.adresse.codePostal}} </li>
