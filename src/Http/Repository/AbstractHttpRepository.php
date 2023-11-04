@@ -9,18 +9,18 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 abstract class AbstractHttpRepository implements HttpRepositoryInterface
 {
-    private AdapterInterface $cache;
+    private ?AdapterInterface $cache;
 
     public function __construct(protected readonly HttpClientInterface $apiClient, protected readonly SerializerInterface $serializer)
     {
-        $this->cache = new FilesystemAdapter(defaultLifetime: 1);
+        $this->cache = new FilesystemAdapter();
     }
 
     abstract public static function getModelClassName(): string;
 
-    public function find(string $id)
+    public function find(string $id, array $context = [])
     {
-        return $this->doFind(sprintf('/%s/%s', $this->getResourcesUri(), $id));
+        return $this->doFind(sprintf('/%s/%s', $this->getResourcesUri(), $id), $context);
     }
 
     public function findAll()
@@ -28,7 +28,7 @@ abstract class AbstractHttpRepository implements HttpRepositoryInterface
         return $this->doFind(sprintf('/%s', $this->getResourcesUri()));
     }
 
-    private function doFind(string $uri)
+    private function doFind(string $uri, array $context = [])
     {
         $cacheKey = \str_replace('/', '', $uri);
 
@@ -43,7 +43,8 @@ abstract class AbstractHttpRepository implements HttpRepositoryInterface
         $object = $this->serializer->deserialize(
             $response->getContent(),
             static::getModelClassName(),
-            'json'
+            'json',
+            $context
         );
 
         $item->set($object);

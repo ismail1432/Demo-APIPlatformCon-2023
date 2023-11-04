@@ -26,7 +26,7 @@ class UserNormalizer extends AbstractNormalizer
         $userConfiguration = new UserConfiguration();
 
         $this->hydrateDatabaseProperties($userConfiguration->getDatabaseProperties(), Utilisateur::class, $user);
-        $this->hydrateDatabaseRelations($userConfiguration->getDatabaseRelations(), $user);
+        $this->hydrateDatabaseRelations($userConfiguration->getDatabaseRelations(), $user, $context);
 
         return $user;
     }

@@ -79,10 +79,13 @@ abstract class AbstractNormalizer implements DenormalizerInterface, Denormalizer
     /**
      * @param RelationConfiguration[] $relationConfigurations
      */
-    protected function hydrateDatabaseRelations(array $relationConfigurations, $object): void
+    protected function hydrateDatabaseRelations(array $relationConfigurations, $object, $context): void
     {
         $result = [];
         foreach ($relationConfigurations as $relationConfiguration) {
+            if (in_array($relationConfiguration->getFqcn(), $context['excludedRelations'] ?? [], true)) {
+                continue;
+            }
             $result =
                 $this->entityManager
                     ->getRepository($relationConfiguration->getFqcn())

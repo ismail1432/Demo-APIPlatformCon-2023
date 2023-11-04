@@ -48,7 +48,7 @@ class EntityWithMigratedRelationPostLoadSubscriber implements EventSubscriberInt
                 $property = $this->propertyAccessor->getValue($object, $relationConfiguration->getPropertyPath());
                 $idValue = $this->propertyAccessor->getValue($property, $relationConfiguration->getIdentifier());
 
-                $fetched = $httpRepository->find($idValue);
+                $fetched = $httpRepository->find($idValue, ['excludedRelations' => [get_class($object)]]);
                 $this->propertyAccessor->setValue($object, $relationConfiguration->getPropertyPath(), $fetched);
             }
         }
